@@ -1,4 +1,5 @@
 const searchForm = document.querySelector("form");
+const searchIcon = document.querySelector("i");
 const searchResultDiv = document.querySelector(".search-result");
 const container = document.querySelector(".container");
 let searchQuery = "";
@@ -11,6 +12,12 @@ const baseUrl =
 searchForm.addEventListener("submit", (e) => {
   e.preventDefault();
   searchQuery = e.target.querySelector("input").value;
+  fetchAPI();
+});
+
+searchIcon.addEventListener("click", (e) => {
+  e.preventDefault();
+  searchQuery = e.target.querySelector("i");
   fetchAPI();
 });
 

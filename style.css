@@ -105,25 +105,9 @@ i {
   text-decoration: none;
 }
 
-@media (max-width: 768px) {
-  .search-result {
-    grid-gap: 10px;
-  }
-  .container.initial .brand {
-    font-size: 4rem;
-  }
-  .container.initial form {
-    max-width: 500px;
-  }
-  .container.initial form input {
-    padding: 10px;
-    font-size: 2rem;
-  }
-}
-
 #modal-container {
   position: absolute;
-  background-color: yellow;
+  background-color: transparent;
 }
 
 .inactive > * {
@@ -136,6 +120,41 @@ i {
 }
 
 .close-modal-container {
-  background-color: red;
+  background-color: rgb(255, 211, 145);
   text-align: right;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#recipe-details-container img {
+  width: 430px;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .brand {
+    font-size: 60px;
+  }
+  i {
+    font-size: 25px;
+  }
+  form input {
+    padding: 13px;
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .brand {
+    font-size: 40px;
+  }
+  i {
+    font-size: 20px;
+  }
+  form input {
+    padding: 7px;
+    font-size: 18px;
+  }
 }
