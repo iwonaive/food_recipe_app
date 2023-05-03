@@ -107,13 +107,7 @@ i {
 
 #modal-container {
   position: absolute;
-  /* background-color: lightpink; */
-  background: rgb(255, 252, 237);
-  background: linear-gradient(
-    90deg,
-    rgba(255, 252, 237, 1) 7%,
-    rgba(244, 221, 232, 1) 100%
-  );
+  background-color: white;
 }
 
 .inactive > * {
@@ -126,13 +120,7 @@ i {
 }
 
 .close-modal-container {
-  /* background-color: white; */
-  background: rgb(255, 252, 237);
-  background: linear-gradient(
-    90deg,
-    rgba(255, 252, 237, 1) 7%,
-    rgba(244, 221, 232, 1) 100%
-  );
+  background-color: white;
   text-align: right;
   position: -webkit-sticky;
   position: sticky;

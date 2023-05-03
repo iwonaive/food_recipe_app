@@ -110,6 +110,7 @@ generateRecipeDetailsHTML = (index) => {
         <div class="recipe-header">
           <h1 class="title">${recipe.label}</h1>
           <h1 class="title">calories: ${Math.floor(recipe.calories)}</h1>
+  
         </div>
         `;
 
