@@ -1,0 +1,42 @@
+.recipe {
+  border: 3px solid blue;
+
+  /* & .recipe-header {
+    background-color: green;
+  }
+
+  & .recipe-detail {
+    background-color: yellow;
+  } */
+}
+
+.recipe-header {
+  background-color: white;
+  font-size: 15px;
+  padding-left: 40px;
+}
+
+.recipe-detail {
+  /* background-color: yellow; */
+  display: flex;
+  font-size: 10px;
+}
+
+.recipe-detail > div:nth-child(1) {
+  border: 3px solid blue;
+  object-fit: fill;
+  height: 25vh;
+  margin: 10px;
+  margin-left: 30px;
+  border-radius: 10px;
+}
+
+.recipe-detail > div:nth-child(2) {
+  border: 3px solid orange;
+}
+
+#recipe-details-container > .recipe > img {
+  width: 25%;
+  margin: 20px 0 10px 40px;
+  border-radius: 20px;
+}
