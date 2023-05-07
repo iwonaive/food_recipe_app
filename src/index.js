@@ -1,135 +1,126 @@
-// import "./assets/scss/main.scss";
-// import styles from "./assets/scss/main.scss";
+import styles from "./assets/scss/index.scss";
 
-const searchForm = document.querySelector("form");
-const searchIcon = document.querySelector("i");
-const searchResultDiv = document.querySelector(".search-result");
-const container = document.querySelector(".container");
-let searchQuery = "";
-let searchResults;
+const searchFormElement = document.getElementById("search-form");
+const searchInputElement = document.getElementById("search-input");
+const searchIconElement = document.getElementById("search-icon");
+const searchResultsElement = document.getElementById("search-results");
+const closeModalElement = document.getElementById("close-modal");
 const APP_ID = "2af2771c";
 const APP_KEY = "eac9b2f1efd13715519350a0208a1a46";
 const baseUrl =
   "https://api.edamam.com/search?q=pizza&app_id=${APP_ID}&app_key=${APP_KEY}";
 
-searchForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  searchQuery = e.target.querySelector("input").value;
-  fetchAPI();
-});
+let searchQuery = "";
+let searchResults;
 
-searchIcon.addEventListener("click", (e) => {
-  e.preventDefault();
-  searchQuery = e.target.querySelector("i");
-  fetchAPI();
-});
+window.onload = () => {
+  addEventListenersToElements();
+};
 
-// async function fetchAPI() {
-//   const baseURL = `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=6`;
-//   const response = await fetch(baseURL);
-//   const data = await response.json();
-//   generateHTML(data.hits);
-//   console.log(data);
-// }
+const addEventListenersToElements = () => {
+  searchFormElement.addEventListener("submit", (e) => {
+    e.preventDefault();
+    searchQuery = e.target.querySelector("input").value;
+    fetchAPI();
+  });
+
+  searchIconElement.addEventListener("click", (e) => {
+    e.preventDefault();
+    searchQuery = searchInputElement.value;
+    if (searchQuery !== "") {
+      fetchAPI();
+    }
+  });
+
+  closeModalElement.addEventListener("click", () => {
+    closeModalContainer();
+  });
+};
 
 async function fetchAPI() {
+  console.log(`searchQuery: `, searchQuery);
   const baseURL = `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=6`;
-  //   const baseURL = `https://api.edamam.com/api/recipes/v2/?type=public&q=pizza&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=6`;
   const response = await fetch(baseURL);
-  const data = await response.json();
-  //   generateHTML(data.hits);
-  //   console.log(data);
-  searchResults = data.hits;
+  const responseData = await response.json();
+  searchResults = responseData.hits;
   console.log(`searchResults: `, searchResults);
-  generateHTML(searchResults);
+  generateSearchResultsHTML(searchResults);
 }
 
-// Wersja 1
-// function generateHTML(results) {
-//   console.log(results);
-//   container.classList.remove("initial");
-//   let generatedHTML = "";
-//   results.forEach((result) => {
-//     generatedHTML += `
-//       <div class="item">
-//         <img src="${result.recipe.image}" alt="img">
-//         <div class="flex-container">
-//           <h1 class="title">${result.recipe.label}</h1>
-//         </div>
-//       </div>
-//     `;
-//   });
-//   console.log(generatedHTML);
-//   searchResultDiv.innerHTML = generatedHTML;
-// }
+const generateSearchResultsHTML = (searchResults) => {
+  searchResults.forEach((result, index) => {
+    const recipe = document.createElement("div");
+    recipe.classList.add("recipe");
 
-// Wersja 3
-function generateHTML(results) {
-  container.classList.remove("initial");
-  let generatedHTML = "";
-  results.forEach((result, index) => {
-    generatedHTML += `
-      <div class="item" onClick="openModalContainer(${index})">
-        <img src="${result.recipe.image}" alt="img">
-        <div class="flex-container">
-          <h1 class="title">${result.recipe.label}</h1>
-        </div>
-      </div>
-    `;
+    const recipeLabel = document.createElement("div");
+    recipeLabel.classList.add("recipe-label");
+    recipeLabel.innerHTML = result.recipe.label;
+    recipe.appendChild(recipeLabel);
+
+    const recipeImage = document.createElement("img");
+    recipeImage.src = result.recipe.image;
+    recipeImage.alt = "recipe image";
+    recipeImage.classList.add("recipe-image");
+    recipe.appendChild(recipeImage);
+
+    recipe.addEventListener("click", () => {
+      openModalContainer(index);
+    });
+
+    searchResultsElement.appendChild(recipe);
   });
-  searchResultDiv.innerHTML = generatedHTML;
-}
+};
 
-openModalContainer = (index) => {
+const openModalContainer = (index) => {
   const recipe = searchResults[index].recipe;
-  // console.log(recipe);
   const modalContainer = document.getElementById("modal-container");
+
   modalContainer.classList.replace("inactive", "active");
 
-  // wstrzyknąć HTML z detalami
   document.getElementById("recipe-details-container").innerHTML =
     generateRecipeDetailsHTML(index);
 };
 
-closeModalContainer = () => {
+const closeModalContainer = () => {
   const modalContainer = document.getElementById("modal-container");
   modalContainer.classList.replace("active", "inactive");
 };
 
-generateRecipeDetailsHTML = (index) => {
+const generateRecipeDetailsHTML = (index) => {
   const recipe = searchResults[index].recipe;
-  // console.log(recipe);
-  // console.log(recipe.ingredients);
 
-  // Start
-  let recipeHTML = '<div class="recipe">';
+  // Start HTML creation
+  let recipeDetailsHTML = '<div class="recipe">';
 
   // Add header
-  recipeHTML += `
-        <img src="${recipe.image}" alt="img">
+  recipeDetailsHTML += `
         <div class="recipe-header">
-          <h1 class="title">${recipe.label}</h1>
-          <h1 class="title">calories: ${Math.floor(recipe.calories)}</h1>
-  
+          <div class="text-container">
+            <h2 class="title">${recipe.label}</h2>
+            <h3 class="title">calories: ${Math.floor(recipe.calories)}</h3>
+          </div>
+          <div class="image-container">
+            <img src="${recipe.image}" alt="img">
+          </div>
         </div>
         `;
 
   // Add details
   recipe.ingredients.forEach((ingredient, index) => {
-    recipeHTML += `
+    recipeDetailsHTML += `
             <div class="recipe-detail">
-              <div>
+              <div class="image-container">
                 <img src="${ingredient.image}" alt="img">
               </div>
-              <div>
-                <h1 class="title">${ingredient.text}</h1>
+              <div class="text-container">
+                <h4 class="title">${ingredient.text}</h4>
               </div>
             </div>
             `;
   });
 
-  // End
-  recipeHTML += "</div>";
+  // End HTML creation
+  recipeDetailsHTML += "</div>";
 
-  return recipeHTML;
+  return recipeDetailsHTML;
 };

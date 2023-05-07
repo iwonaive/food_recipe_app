@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food recipe app 🍕</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+
+    <!-- App container -->
+    <div id="app-container">
+
+      <!-- Modal -->
+      <div id="modal-container" class="inactive">
+        <div id="close-modal-container">
+          <span id="close-modal"></span>
+        </div>
+        <div id="recipe-details-container">***recipe-details-container***</div>
+      </div>
+
+      <!-- Recipes -->
+      <section id="recipes-container">
+          <h1>Food Recipes</h1>
+
+          <form id="search-form">
+            <input id="search-input" type="text" placeholder="Search..." />
+            <i id="search-icon" class="fa-solid fa-magnifying-glass"></i>
+          </form>
+
+          <div id="search-results"></div>
+      </section>
+
+    </div>
+
+    <!-- scripts -->
+    <script src="https://kit.fontawesome.com/7f9341b2dd.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="index.js"></script>
+  </body>
+</html>

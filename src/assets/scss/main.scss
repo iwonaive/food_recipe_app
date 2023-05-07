@@ -1,6 +1,47 @@
-// @import "./test1.scss";
-// @import "./test2.scss";
+body {
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    background-color: lightblue;
+    margin: 0;
+    padding: 0;
+    
+    & * {
+        box-sizing: border-box;
+    }
+}
 
-* {
-  background-color: yellow;
+#app-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    border: 5px solid green;
+    min-height: 100vh;
+
+    & img {
+        border-radius: 8;
+        box-shadow: 0 0 2px 2px white;
+    }
+
+     & h1, h2, h3, h4 {
+        margin: 0;
+        padding: 0;
+     }
+
+    & h1 {
+        font-size: 40px;
+    }
+
+    & h2 {
+        font-size: 32px;
+    }
+
+    & h3 {
+        font-size: 24;
+    }
+
+    & h3 {
+        font-size: 20;
+    }
 }

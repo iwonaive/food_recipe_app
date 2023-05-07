@@ -1,0 +1,117 @@
+#recipes-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  padding: 10px;
+  //   background-color: blue;
+  box-shadow: 0 0 2px 2px lightgray;
+  box-sizing: border-box;
+
+  & > h1 {
+    padding-bottom: 20px;
+  }
+
+  // search-form
+  & > #search-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    background-color: green;
+
+    & > #search-input {
+      width: 50%;
+      height: 30px;
+      line-height: 30px;
+    }
+
+    & > #search-icon {
+      transform: translate(-25px, 7px);
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  // search-results
+  & > #search-results {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 20px;
+    width: 100%;
+    border: 3px dotted yellow;
+
+    & > .recipe {
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      border: 2px solid red;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      & > * {
+        display: block;
+        width: 50%;
+      }
+
+      & > .recipe-label {
+        font-size: 16px;
+        border: 1px solid black;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #recipes-container {
+    width: 100%;
+
+    & > #search-results {
+      background-color: green;
+      display: flex;
+      justify-content: space-evenly;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      & > .recipe {
+        background-color: yellow;
+        display: flex;
+        max-width: 45%;
+
+        & > .recipe-label {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 960px) {
+  #recipes-container {
+    width: 100%;
+
+    & > #search-results {
+      background-color: pink;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      & > .recipe {
+        background-color: yellow;
+        display: flex;
+        max-width: 30%;
+
+        & > .recipe-label {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+}
