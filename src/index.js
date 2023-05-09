@@ -39,7 +39,7 @@ const addEventListenersToElements = () => {
 
 async function fetchAPI() {
   console.log(`searchQuery: `, searchQuery);
-  const baseURL = `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=6`;
+  const baseURL = `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=9`;
   const response = await fetch(baseURL);
   const responseData = await response.json();
   searchResults = responseData.hits;

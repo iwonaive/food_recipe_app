@@ -5,8 +5,8 @@
   align-items: center;
   width: 80%;
   padding: 10px;
-  //   background-color: blue;
-  box-shadow: 0 0 2px 2px lightgray;
+  // background-color: blue;
+  // box-shadow: 0 0 2px 2px lightgray;
   box-sizing: border-box;
 
   & > h1 {
@@ -19,16 +19,24 @@
     flex-direction: row;
     justify-content: center;
     width: 100%;
-    background-color: green;
+    // background-color: green;
 
     & > #search-input {
-      width: 50%;
+      width: 40%;
       height: 30px;
       line-height: 30px;
+      border: 1px solid rgb(208, 37, 185);
+      border-radius: 3px;
+      box-shadow: 0.5em 0 2em rgb(192, 192, 191);
     }
 
     & > #search-icon {
-      transform: translate(-25px, 7px);
+      // transform: translate(-25px, 7px);
+      padding: 5px 5px;
+      background-color: white;
+      border: 2px solid rgb(208, 37, 185);
+      border-radius: 50px;
+      color: rgb(117, 22, 104);
 
       &:hover {
         cursor: pointer;
@@ -73,14 +81,14 @@
     width: 100%;
 
     & > #search-results {
-      background-color: green;
+      // background-color: green;
       display: flex;
       justify-content: space-evenly;
       flex-direction: row;
       flex-wrap: wrap;
 
       & > .recipe {
-        background-color: yellow;
+        // background-color: yellow;
         display: flex;
         max-width: 45%;
 
@@ -97,14 +105,14 @@
     width: 100%;
 
     & > #search-results {
-      background-color: pink;
+      // background-color: pink;
       display: flex;
       justify-content: space-between;
       flex-direction: row;
       flex-wrap: wrap;
 
       & > .recipe {
-        background-color: yellow;
+        // background-color: yellow;
         display: flex;
         max-width: 30%;
 
