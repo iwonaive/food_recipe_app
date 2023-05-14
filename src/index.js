@@ -5,6 +5,7 @@ const searchInputElement = document.getElementById("search-input");
 const searchIconElement = document.getElementById("search-icon");
 const searchResultsElement = document.getElementById("search-results");
 const closeModalElement = document.getElementById("close-modal");
+const selectHTML = document.getElementById("types");
 const APP_ID = "2af2771c";
 const APP_KEY = "eac9b2f1efd13715519350a0208a1a46";
 const baseUrl =
@@ -38,16 +39,19 @@ const addEventListenersToElements = () => {
 };
 
 async function fetchAPI() {
-  console.log(`searchQuery: `, searchQuery);
-  const baseURL = `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=9`;
+  // console.log(`searchQuery: `, searchQuery);
+  const baseURL = selectHTML.value
+    ? `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_KEY}&dishType=${selectHTML.value}&from=0&to=9`
+    : `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=9`;
   const response = await fetch(baseURL);
   const responseData = await response.json();
   searchResults = responseData.hits;
-  console.log(`searchResults: `, searchResults);
+  // console.log(`searchResults: `, searchResults);
   generateSearchResultsHTML(searchResults);
 }
 
 const generateSearchResultsHTML = (searchResults) => {
+  searchResultsElement.innerHTML = "";
   searchResults.forEach((result, index) => {
     const recipe = document.createElement("div");
     recipe.classList.add("recipe");

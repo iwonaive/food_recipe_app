@@ -21,7 +21,8 @@
     width: 100%;
     // background-color: green;
 
-    & > #search-input {
+    & > #search-input,
+    & #types {
       width: 40%;
       height: 30px;
       line-height: 30px;
