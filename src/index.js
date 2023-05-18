@@ -39,14 +39,12 @@ const addEventListenersToElements = () => {
 };
 
 async function fetchAPI() {
-  // console.log(`searchQuery: `, searchQuery);
   const baseURL = selectHTML.value
     ? `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_KEY}&dishType=${selectHTML.value}&from=0&to=9`
     : `https://api.edamam.com/search?q=${searchQuery}&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=9`;
   const response = await fetch(baseURL);
   const responseData = await response.json();
   searchResults = responseData.hits;
-  // console.log(`searchResults: `, searchResults);
   generateSearchResultsHTML(searchResults);
 }
 
@@ -93,10 +91,8 @@ const closeModalContainer = () => {
 const generateRecipeDetailsHTML = (index) => {
   const recipe = searchResults[index].recipe;
 
-  // Start HTML creation
   let recipeDetailsHTML = '<div class="recipe">';
 
-  // Add header
   recipeDetailsHTML += `
         <div class="recipe-header">
           <div class="text-container">
@@ -109,7 +105,6 @@ const generateRecipeDetailsHTML = (index) => {
         </div>
         `;
 
-  // Add details
   recipe.ingredients.forEach((ingredient, index) => {
     recipeDetailsHTML += `
             <div class="recipe-detail">
@@ -123,7 +118,6 @@ const generateRecipeDetailsHTML = (index) => {
             `;
   });
 
-  // End HTML creation
   recipeDetailsHTML += "</div>";
 
   return recipeDetailsHTML;
